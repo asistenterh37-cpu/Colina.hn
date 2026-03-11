@@ -1310,10 +1310,10 @@
     }
 
     /* RESPONSIVE */
-    @media(max-width:1100px){
-      .clima-grid, .layout-app, .retiro-grid, .panel-grid-3, .panel-grid-2, .form-grid-3, .form-grid-2, .long-form{
+         @media(max-width:1100px){
+      .clima-grid, .layout-app, .retiro-grid, .panel-grid-3, .panel-grid-2, .form-grid-3, .form-grid-2, .long-form, .salary-layout{
         grid-template-columns:1fr;
-      }
+      }    
       .side-menu{
         width:100%;
         border-right:none;
@@ -1580,8 +1580,9 @@
   </div>
 
 </div>
+    </div>
 
-      <div class="division">
+    <div class="division" id="otros">
       <div class="division-header">
         <h3>Otros</h3>
         <p>
@@ -1605,7 +1606,6 @@
       </div>
     </div>
   </section>
-
   <section id="visor-preview" class="full-preview-section">
     <div class="full-preview-shell">
       <div class="full-preview-header">
@@ -2793,166 +2793,103 @@ El plan proyectado permite igualar el valor futuro estimado de prestaciones, int
         </div>
       </div>
 
-  <div class="app-frame">
-    <div class="preview-frame-outline">
-      <div class="browser-shell">
+        <!-- ADMINISTRACIÓN SALARIAL -->
+      <div class="full-preview-content" id="preview-admin-salarial">
+        <div class="app-frame">
+          <div class="preview-frame-outline">
+            <div class="browser-shell">
 
-        <div class="browser-top">
-          <div class="browser-left">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">administracion-salarial-demo</div>
-          </div>
-          <div class="browser-badge">Pantalla inicial</div>
-        </div>
-
-        <div class="app-viewport scrollable-preview">
-          <div class="mock-app">
-
-            <div class="mock-header">
-              <div>
-                <div class="mock-title">Administración salarial</div>
-                <div class="mock-sub">Estructura salarial, equidad interna y competitividad externa.</div>
+              <div class="browser-top">
+                <div class="browser-left">
+                  <div class="browser-dots"><span></span><span></span><span></span></div>
+                  <div class="browser-url">administracion-salarial-demo</div>
+                </div>
+                <div class="browser-badge">Pantalla inicial</div>
               </div>
 
-              <div class="mock-chip-row">
-                <span class="mock-chip">Compensación</span>
-                <span class="mock-chip green">Equidad</span>
-                <span class="mock-chip violet">Mercado</span>
-              </div>
-            </div>
+              <div class="app-viewport scrollable-preview">
+                <div class="mock-app">
 
-            <div class="mock-main salary-preview-wrap">
-              <div class="salary-sheet">
-                <div class="salary-layout">
+                  <div class="mock-header">
+                    <div>
+                      <div class="mock-title">Administración salarial</div>
+                      <div class="mock-sub">Estructura salarial, equidad interna y competitividad externa.</div>
+                    </div>
 
-                  <div class="salary-box">
-                    <h4>Estructura salarial</h4>
-
-                    <table class="salary-structure-table">
-                      <thead>
-                        <tr>
-                          <th>Clase</th>
-                          <th>Minimo</th>
-                          <th>Maxim</th>
-                          <th>Pm</th>
-                          <th>Mínimo</th>
-                          <th>Promedio</th>
-                          <th>Máximo</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>A</td>
-                          <td>95</td>
-                          <td>115</td>
-                          <td>105.0</td>
-                          <td>18,900</td>
-                          <td>26,961</td>
-                          <td>32,354</td>
-                        </tr>
-                        <tr>
-                          <td>B</td>
-                          <td>116</td>
-                          <td>143</td>
-                          <td>129.5</td>
-                          <td>23,726</td>
-                          <td>29,657</td>
-                          <td>35,589</td>
-                        </tr>
-                        <tr>
-                          <td>C</td>
-                          <td>144</td>
-                          <td>178</td>
-                          <td>161.0</td>
-                          <td>24,912</td>
-                          <td>31,140</td>
-                          <td>37,368</td>
-                        </tr>
-                        <tr>
-                          <td>D</td>
-                          <td>179</td>
-                          <td>221</td>
-                          <td>200.0</td>
-                          <td>27,902</td>
-                          <td>34,877</td>
-                          <td>41,853</td>
-                        </tr>
-                        <tr>
-                          <td>E</td>
-                          <td>222</td>
-                          <td>274</td>
-                          <td>248.0</td>
-                          <td>32,366</td>
-                          <td>40,458</td>
-                          <td>48,549</td>
-                        </tr>
-                        <tr>
-                          <td>F</td>
-                          <td>275</td>
-                          <td>340</td>
-                          <td>307.5</td>
-                          <td>40,458</td>
-                          <td>50,572</td>
-                          <td>60,686</td>
-                        </tr>
-                        <tr>
-                          <td>G</td>
-                          <td>341</td>
-                          <td>421</td>
-                          <td>381.0</td>
-                          <td>60,686</td>
-                          <td>75,858</td>
-                          <td>91,030</td>
-                        </tr>
-                        <tr>
-                          <td>H</td>
-                          <td>422</td>
-                          <td>523</td>
-                          <td>472.5</td>
-                          <td>72,824</td>
-                          <td>91,030</td>
-                          <td>109,236</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div class="mock-chip-row">
+                      <span class="mock-chip">Compensación</span>
+                      <span class="mock-chip green">Equidad</span>
+                      <span class="mock-chip violet">Mercado</span>
+                    </div>
                   </div>
 
-                  <div class="salary-box">
-                    <table class="salary-policy-table">
-                      <thead>
-                        <tr>
-                          <th>Política salarial</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr><td>Desempeño</td></tr>
-                        <tr><td>Ascensos</td></tr>
-                        <tr><td>Salarios abajo del mínimo del grado</td></tr>
-                        <tr><td>Salarios arriba del máximo del grado</td></tr>
-                        <tr><td>Ajustes y esperas</td></tr>
-                        <tr><td>Equidad interna</td></tr>
-                        <tr><td>Competitividad externa</td></tr>
-                        <tr><td>Segmento comparativo</td></tr>
-                      </tbody>
-                    </table>
+                  <div class="mock-main salary-preview-wrap">
+                    <div class="salary-sheet">
+                      <div class="salary-layout">
+
+                        <div class="salary-box">
+                          <h4>Estructura salarial</h4>
+
+                          <table class="salary-structure-table">
+                            <thead>
+                              <tr>
+                                <th>Clase</th>
+                                <th>Mín.</th>
+                                <th>Máx.</th>
+                                <th>PM</th>
+                                <th>Mínimo</th>
+                                <th>Promedio</th>
+                                <th>Máximo</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr><td>A</td><td>95</td><td>115</td><td>105.0</td><td>18,900</td><td>26,961</td><td>32,354</td></tr>
+                              <tr><td>B</td><td>116</td><td>143</td><td>129.5</td><td>23,726</td><td>29,657</td><td>35,589</td></tr>
+                              <tr><td>C</td><td>144</td><td>178</td><td>161.0</td><td>24,912</td><td>31,140</td><td>37,368</td></tr>
+                              <tr><td>D</td><td>179</td><td>221</td><td>200.0</td><td>27,902</td><td>34,877</td><td>41,853</td></tr>
+                              <tr><td>E</td><td>222</td><td>274</td><td>248.0</td><td>32,366</td><td>40,458</td><td>48,549</td></tr>
+                              <tr><td>F</td><td>275</td><td>340</td><td>307.5</td><td>40,458</td><td>50,572</td><td>60,686</td></tr>
+                              <tr><td>G</td><td>341</td><td>421</td><td>381.0</td><td>60,686</td><td>75,858</td><td>91,030</td></tr>
+                              <tr><td>H</td><td>422</td><td>523</td><td>472.5</td><td>72,824</td><td>91,030</td><td>109,236</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div class="salary-box">
+                          <table class="salary-policy-table">
+                            <thead>
+                              <tr>
+                                <th>Política salarial</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr><td>Desempeño</td></tr>
+                              <tr><td>Ascensos</td></tr>
+                              <tr><td>Salarios abajo del mínimo del grado</td></tr>
+                              <tr><td>Salarios arriba del máximo del grado</td></tr>
+                              <tr><td>Ajustes y esperas</td></tr>
+                              <tr><td>Equidad interna</td></tr>
+                              <tr><td>Competitividad externa</td></tr>
+                              <tr><td>Segmento comparativo</td></tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+
+                      <div class="mock-footer-status" style="margin-top:14px;">
+                        Estado: <strong>Listo</strong>
+                      </div>
+                    </div>
                   </div>
 
                 </div>
-
-                <div class="mock-footer-status" style="margin-top:14px;">
-                  Estado: <strong>Listo</strong>
-                </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
-
       </div>
-    </div>
-  </div>
-
-</div>
       
           <!-- ESTRATEGIA -->
       <div class="full-preview-content" id="preview-estrategia">
