@@ -3289,6 +3289,21 @@ El plan proyectado permite igualar el valor futuro estimado de prestaciones, int
       }
     });
 
+    <script>
+    window.addEventListener('load', function () {
+      if (window.location.hash === '#automatizaciones') {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+    });
+
+    window.addEventListener('hashchange', function () {
+      if (window.location.hash === '#automatizaciones') {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
     function openPreview(id, title){
       const viewer = document.getElementById('visor-preview');
       const allContents = document.querySelectorAll('.full-preview-content');
