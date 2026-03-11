@@ -2793,124 +2793,6 @@ El plan proyectado permite igualar el valor futuro estimado de prestaciones, int
         </div>
       </div>
 
-<!-- NUEVO PREVIEW DE ADMINISTRACIÓN SALARIAL -->
-<div class="full-preview-content" id="preview-admin-salarial">
-
-  <style>
-    .salary-preview-wrap{
-      padding:22px;
-    }
-
-    .salary-sheet{
-      background:linear-gradient(180deg,#0a1324 0%, #07101d 100%);
-      border:1px solid rgba(56,189,248,.12);
-      border-radius:20px;
-      padding:22px;
-      box-shadow:0 10px 24px rgba(0,0,0,.20);
-    }
-
-    .salary-layout{
-      display:grid;
-      grid-template-columns:minmax(0, 1.45fr) minmax(260px, .85fr);
-      gap:18px;
-      align-items:start;
-    }
-
-    .salary-box{
-      background:rgba(15,23,42,.72);
-      border:1px solid rgba(56,189,248,.10);
-      border-radius:18px;
-      padding:16px 16px 14px;
-    }
-
-    .salary-box h4{
-      margin:0 0 12px 0;
-      font-size:16px;
-      color:#f8fafc;
-      font-weight:700;
-    }
-
-    .salary-structure-table{
-      width:100%;
-      border-collapse:collapse;
-      table-layout:fixed;
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .salary-structure-table th,
-    .salary-structure-table td{
-      border:1px solid rgba(255,255,255,.08);
-      padding:8px 10px;
-      font-size:12px;
-      line-height:1.2;
-      text-align:center;
-      white-space:nowrap;
-    }
-
-    .salary-structure-table th{
-      background:rgba(255,255,255,.04);
-      color:#f8fafc;
-      font-weight:700;
-    }
-
-    .salary-structure-table td{
-      color:#e5e7eb;
-    }
-
-    .salary-structure-table td:first-child,
-    .salary-structure-table th:first-child{
-      width:70px;
-      font-weight:700;
-    }
-
-    .salary-structure-table th:nth-child(2),
-    .salary-structure-table th:nth-child(3),
-    .salary-structure-table th:nth-child(4){
-      color:#dbeafe;
-    }
-
-    .salary-structure-table td:nth-child(2),
-    .salary-structure-table td:nth-child(3),
-    .salary-structure-table td:nth-child(4){
-      color:#a5b4fc;
-      font-weight:600;
-    }
-
-    .salary-policy-table{
-      width:100%;
-      border-collapse:collapse;
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .salary-policy-table th,
-    .salary-policy-table td{
-      border:1px solid rgba(255,255,255,.08);
-      padding:9px 12px;
-      font-size:12px;
-      line-height:1.25;
-      text-align:left;
-    }
-
-    .salary-policy-table th{
-      background:rgba(255,255,255,.04);
-      color:#f8fafc;
-      font-weight:700;
-      text-align:center;
-    }
-
-    .salary-policy-table td{
-      color:#f8fafc;
-    }
-
-    @media(max-width:980px){
-      .salary-layout{
-        grid-template-columns:1fr;
-      }
-    }
-  </style>
-
   <div class="app-frame">
     <div class="preview-frame-outline">
       <div class="browser-shell">
@@ -3269,10 +3151,7 @@ El plan proyectado permite igualar el valor futuro estimado de prestaciones, int
     </div>
   </section>
 
-  <footer>© 2026 Automatizaciones Digitales</footer>
-
-  <script>
-    <script>
+   <script>
     window.addEventListener('load', function () {
       if (window.location.hash === '#automatizaciones') {
         history.replaceState(null, null, window.location.pathname + window.location.search);
@@ -3287,6 +3166,252 @@ El plan proyectado permite igualar el valor futuro estimado de prestaciones, int
       }
     });
 
+    function openPreview(id, title){
+      const viewer = document.getElementById('visor-preview');
+      const allContents = document.querySelectorAll('.full-preview-content');
+      const target = document.getElementById(id);
+      const titleElement = document.getElementById('preview-viewer-title');
+
+      allContents.forEach(content => content.classList.remove('active'));
+
+      if(target){
+        target.classList.add('active');
+        titleElement.textContent = title;
+        viewer.classList.add('active');
+
+        const scrollableAreas = target.querySelectorAll('.scrollable-preview');
+        scrollableAreas.forEach(area => area.scrollTop = 0);
+
+        setTimeout(() => {
+          viewer.scrollIntoView({ behavior:'smooth', block:'start' });
+        }, 120);
+      }
+    }
+
+    function closePreview(){
+      const viewer = document.getElementById('visor-preview');
+      const allContents = document.querySelectorAll('.full-preview-content');
+      const rrhh = document.getElementById('rrhh');
+
+      viewer.classList.remove('active');
+      allContents.forEach(content => content.classList.remove('active'));
+
+      setTimeout(() => {
+        rrhh.scrollIntoView({ behavior:'smooth', block:'start' });
+      }, 120);
+    }
+
+    const gamesWrap = document.getElementById('gamesWrap');
+    const gamesPanel = document.getElementById('gamesPanel');
+    const puzzleBoard = document.getElementById('puzzleBoard');
+    const moveCountEl = document.getElementById('moveCount');
+    const currentSizeEl = document.getElementById('currentSize');
+    const puzzleWinEl = document.getElementById('puzzleWin');
+
+    let puzzleSize = 4;
+    let puzzle = [];
+    let moves = 0;
+
+    function toggleGamesPanel(event){
+      event.stopPropagation();
+      gamesWrap.classList.toggle('open');
+    }
+
+    function closeGamesPanel(){
+      gamesWrap.classList.remove('open');
+    }
+
+    document.addEventListener('click', function(e){
+      if(!gamesWrap.contains(e.target)){
+        closeGamesPanel();
+      }
+    });
+
+    gamesPanel.addEventListener('click', function(e){
+      e.stopPropagation();
+    });
+
+    function createSolvedPuzzle(size){
+      const arr = [];
+      for(let i = 1; i < size * size; i++){
+        arr.push(i);
+      }
+      arr.push(0);
+      return arr;
+    }
+
+    function getBlankIndex(){
+      return puzzle.indexOf(0);
+    }
+
+    function isAdjacent(index1, index2){
+      const row1 = Math.floor(index1 / puzzleSize);
+      const col1 = index1 % puzzleSize;
+      const row2 = Math.floor(index2 / puzzleSize);
+      const col2 = index2 % puzzleSize;
+      return Math.abs(row1 - row2) + Math.abs(col1 - col2) === 1;
+    }
+
+    function moveTile(index){
+      const blankIndex = getBlankIndex();
+      if(isAdjacent(index, blankIndex)){
+        [puzzle[index], puzzle[blankIndex]] = [puzzle[blankIndex], puzzle[index]];
+        moves++;
+        renderPuzzle();
+        checkWin();
+      }
+    }
+
+    function renderPuzzle(){
+      puzzleBoard.innerHTML = '';
+      puzzleBoard.style.gridTemplateColumns = `repeat(${puzzleSize}, 1fr)`;
+      currentSizeEl.textContent = `${puzzleSize}x${puzzleSize}`;
+      moveCountEl.textContent = moves;
+
+      puzzle.forEach((value, index) => {
+        const tile = document.createElement('div');
+        tile.className = 'puzzle-tile';
+
+        if(value === 0){
+          tile.classList.add('blank');
+          tile.innerHTML = '';
+        } else {
+          tile.textContent = value;
+          tile.addEventListener('click', function(e){
+            e.stopPropagation();
+            moveTile(index);
+          });
+        }
+
+        puzzleBoard.appendChild(tile);
+      });
+    }
+
+    function checkWin(){
+      const solved = createSolvedPuzzle(puzzleSize);
+      const won = puzzle.every((value, index) => value === solved[index]);
+
+      if(won){
+        puzzleWinEl.textContent = `¡Completado en ${moves} movimientos!`;
+      } else {
+        puzzleWinEl.textContent = '';
+      }
+    }
+
+    function getInversionCount(arr){
+      const filtered = arr.filter(n => n !== 0);
+      let inversions = 0;
+      for(let i = 0; i < filtered.length; i++){
+        for(let j = i + 1; j < filtered.length; j++){
+          if(filtered[i] > filtered[j]){
+            inversions++;
+          }
+        }
+      }
+      return inversions;
+    }
+
+    function isSolvable(arr, size){
+      const inversions = getInversionCount(arr);
+      const blankRowFromBottom = size - Math.floor(arr.indexOf(0) / size);
+
+      if(size % 2 !== 0){
+        return inversions % 2 === 0;
+      } else {
+        if(blankRowFromBottom % 2 === 0){
+          return inversions % 2 !== 0;
+        } else {
+          return inversions % 2 === 0;
+        }
+      }
+    }
+
+    function isSolved(arr){
+      const solved = createSolvedPuzzle(puzzleSize);
+      return arr.every((value, index) => value === solved[index]);
+    }
+
+    function shuffleArray(array){
+      const arr = [...array];
+      for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function shufflePuzzle(){
+      let shuffled;
+      do{
+        shuffled = shuffleArray(createSolvedPuzzle(puzzleSize));
+      }while(!isSolvable(shuffled, puzzleSize) || isSolved(shuffled));
+
+      puzzle = shuffled;
+      moves = 0;
+      puzzleWinEl.textContent = '';
+      renderPuzzle();
+    }
+
+    function changePuzzleSize(size, button){
+      puzzleSize = size;
+      document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+      if(button) button.classList.add('active');
+      initPuzzle();
+    }
+
+    function initPuzzle(){
+      puzzle = createSolvedPuzzle(puzzleSize);
+      moves = 0;
+      puzzleWinEl.textContent = '';
+      renderPuzzle();
+      shufflePuzzle();
+    }
+
+    const devtoolsWarning = document.getElementById('devtoolsWarning');
+
+    function showDevtoolsWarning(){
+      devtoolsWarning.classList.add('active');
+    }
+
+    function hideDevtoolsWarning(){
+      devtoolsWarning.classList.remove('active');
+    }
+
+    document.addEventListener('contextmenu', function(e){
+      e.preventDefault();
+      showDevtoolsWarning();
+    });
+
+    document.addEventListener('keydown', function(e){
+      const key = e.key.toLowerCase();
+
+      if(
+        key === 'f12' ||
+        (e.ctrlKey && e.shiftKey && ['i','j','c','k'].includes(key)) ||
+        (e.ctrlKey && ['u','s','p'].includes(key)) ||
+        (e.metaKey && e.altKey && ['i','j','c'].includes(key)) ||
+        (e.metaKey && ['u','s','p'].includes(key))
+      ){
+        e.preventDefault();
+        e.stopPropagation();
+        showDevtoolsWarning();
+        return false;
+      }
+    }, true);
+
+    window.addEventListener('blur', function(){
+      setTimeout(function(){
+        const widthGap = window.outerWidth - window.innerWidth;
+        const heightGap = window.outerHeight - window.innerHeight;
+
+        if(widthGap > 160 || heightGap > 160){
+          showDevtoolsWarning();
+        }
+      }, 150);
+    });
+
+    initPuzzle();
+  </script>
     <script>
     window.addEventListener('load', function () {
       if (window.location.hash === '#automatizaciones') {
